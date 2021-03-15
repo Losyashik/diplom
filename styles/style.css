@@ -101,4 +101,30 @@ main.conteiner {
   width: 80vw;
   height: 82vh;
 }
+
+main.conteiner #groups_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main.conteiner #groups_list .group_name {
+  display: block;
+  width: 20%;
+  margin: 10px 2%;
+  text-align: center;
+  border: 2px solid;
+  font-size: 170%;
+  color: #000;
+  text-decoration: none;
+}
+
+main.conteiner #groups_list .group_name:first {
+  margin-right: 0;
+}
 /*# sourceMappingURL=style.css.map */
