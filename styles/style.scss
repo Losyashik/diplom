@@ -1,0 +1,87 @@
+.navigation_panel{
+    position:absolute;
+    left:0;
+    top:0;
+    width: 4vw;
+    height:100%;
+    overflow:hidden;
+    display: flex;
+    background-color: rgba($color: #000000, $alpha: .9);
+    transition: all .3s ease-in-out;
+    &:hover{
+        width: 15vw;
+        background-color:#000;
+        z-index: 20;
+        .navigation{
+            width: 100%;
+            .navigation_block{
+                width: 100%;
+                &:hover{
+                    background-color: rgb(109, 109, 109);
+                    color: #000;
+                }
+                img{
+                    margin:0 .5vw;
+                }
+            }
+        }
+    }
+    
+    .navigation{
+        display: inline-block;
+        margin: auto;
+        .navigation_block{
+            &.selected{
+                background-color: rgb(109, 109, 109);
+                color: #000;
+            }
+            cursor: pointer;
+            display:block;
+            color: #fff;
+            text-decoration: none;
+            height: 4vw;
+            overflow: hidden;
+            padding: .5vw 0;
+            img{
+                display: block;
+                float: left;
+                width: 4vw;
+                height: 4vw;
+            }
+            p{
+                display: inline-block;
+                width: 10vw;
+            }
+        }
+    }
+}
+.login-informaton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30vw;
+    height: 15vh;
+    background-color: rgba($color: #000000, $alpha: .8);
+    text-align: center;
+    padding: .5vh .5vw;
+    color: #fff;
+    button{
+        width: 30%;
+        font-size: 2.3vh;
+        background-color: #686868;
+        color: #fff;
+    }
+}
+h1{
+    position: absolute;
+    left: 12vw;
+    width: 55vw;
+    text-align: center;
+}
+main.conteiner{
+    position: absolute;
+    top: 18vh;
+    left: 15.5vw;
+    width: 80vw;
+    height: 82vh;
+}
