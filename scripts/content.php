@@ -1,8 +1,9 @@
 <?php
 include "html.php";
+$link = mysqli_connect('localhost','root','','isup');
 switch ($_POST["page"]) {
     case "./":
-        echo "<p>Текст1...</p>";
+        //$link->query('SELECT * FROM ');
     break;
 
     case "./reports":
