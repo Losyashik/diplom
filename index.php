@@ -1,8 +1,23 @@
-<?php 
-    include("scripts/menu.php");
+<?php
+include("scripts/login.php");
+if (isset($_SESSION['user']))
+    if(time() - $_SESSION['user']['last_time'] <= 1200){
+        $_SESSION['user']['last_time']= time();
+        $user = $_SESSION['user'];
+    }
+    else{
+        unset($_SESSION['user']);
+        header('Location:/');
+    }
+else{
+    openLoginWindow();
+}
+$link = mysqli_connect('localhost', 'root', '', 'linoleum');
+include("scripts/menu.php");
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,20 +26,29 @@
     <script src="scripts/event_hander.js"></script>
     <title><?php echo $data->title(); ?></title>
 </head>
+
 <body>
     <nav class="navigation_panel">
         <div class="navigation">
-        <?php echo $data->menu(); ?>
+            <?php echo $data->menu(); ?>
         </div>
     </nav>
-    <h1 id="title"> <?php echo $data->title();?></h1>
+    <h1 id="title"> <?php echo $data->title(); ?></h1>
     <main class="login-informaton">
-        <p>Фамилия Имя Отчество</p>    
+        <p><?php echo($_SESSION['user']['full_name'])?></p>
         <button class="exit">Выход</button>
     </main>
     <main class="conteiner">
-        <?php echo($data->content($data->state(),$data->title())); ?>
+        <?php echo ($data->content($data->state(), $data->title())); ?>
     </main>
+    <script src="scripts/exit.js"></script>
+    <script src="scripts/select.js"></script>
     
+    <script src='scripts/add_students/chek_student.js'></script>
+    <div id='script' style="display: none;"></div>
+    <div class="loader">
+        <img src="images/loader1.gif" alt="Загрузка">
+    </div>
 </body>
+
 </html>

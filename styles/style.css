@@ -11,12 +11,12 @@
   background-color: rgba(0, 0, 0, 0.9);
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  z-index: 20;
 }
 
 .navigation_panel:hover {
   width: 15vw;
   background-color: #000;
-  z-index: 20;
 }
 
 .navigation_panel:hover .navigation {
@@ -56,11 +56,18 @@
   color: #000;
 }
 
+.navigation_panel .navigation .navigation_block.selected img {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+}
+
 .navigation_panel .navigation .navigation_block img {
   display: block;
   float: left;
   width: 4vw;
   height: 4vw;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
 }
 
 .navigation_panel .navigation .navigation_block p {
@@ -89,20 +96,176 @@
 
 h1 {
   position: absolute;
-  left: 12vw;
+  left: 10.5vw;
   width: 55vw;
   text-align: center;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(65, 65, 65, 0.94);
+  display: none;
+  z-index: 15;
+  top: 0;
+  left: 0;
+}
+
+.loader img {
+  display: block;
+  position: absolute;
+  width: 8vw;
+  height: 8vw;
+  top: calc(50% - 4vw);
+  left: calc(50% - 4vw);
 }
 
 main.conteiner {
   position: absolute;
   top: 18vh;
-  left: 15.5vw;
-  width: 80vw;
+  left: 8.5vw;
+  width: 87vw;
   height: 82vh;
 }
 
-main.conteiner #groups_list {
+main.conteiner nav.sort {
+  height: 6vh;
+  padding: 2vh 0;
+  border: 1px solid #dadada;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main.conteiner nav.sort .sort_interface {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+main.conteiner nav.sort .sort_interface .select_block {
+  width: 40%;
+  height: calc(100% - 2px);
+  border: 1px solid;
+  cursor: pointer;
+  margin-right: 5%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select span {
+  display: block;
+  padding: 3% 25px 0 15px;
+  margin-bottom: 3%;
+  height: 60%;
+  overflow: hidden;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select::after {
+  display: block;
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-image: url("../images/down-arrow.png");
+  background-size: 100% 100%;
+  position: absolute;
+  right: 9px;
+  top: calc(50% - 16px / 2);
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list {
+  position: relative;
+  width: calc(100% - 2px);
+  margin-top: 1vh;
+  z-index: 10;
+  -webkit-transition: height .3s;
+  transition: height .3s;
+  background-color: #fff;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list.activ {
+  display: block;
+  border: 1px solid #a0a0a0;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list .select_item {
+  width: 100%;
+  border-bottom: 1px solid #a0a0a0;
+  padding-top: 2px;
+  display: none;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list .select_item.activ {
+  display: block;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list .select_item.selected {
+  background-color: #dadada;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list .select_item:last-child {
+  border: none;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list .select_item:hover {
+  background: #dadada;
+}
+
+main.conteiner nav.sort .sort_interface .select_block .select_list .select_item span {
+  display: block;
+  padding: 3% 25px 3% 15px;
+}
+
+main.conteiner nav.sort .sort_interface#search {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main.conteiner nav.sort .sort_interface #search_group {
+  display: block;
+  width: 40%;
+}
+
+main.conteiner nav.sort .sort_interface .search_button {
+  width: 15%;
+  margin: 0 1%;
+}
+
+main.conteiner nav.sort .sort_interface .add_lecture {
+  display: block;
+  width: 36%;
+  padding: 0 2%;
+  margin-left: 5%;
+}
+
+main.conteiner nav.sort .sort_interface #button_add_lecture {
+  width: 30%;
+  background: #c9dcff;
+  margin: 0 10%;
+}
+
+main.conteiner nav.sort .sort_interface#add_lecture {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main.conteiner .list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -111,20 +274,136 @@ main.conteiner #groups_list {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
-main.conteiner #groups_list .group_name {
+main.conteiner .list .list_item {
   display: block;
-  width: 20%;
   margin: 10px 2%;
   text-align: center;
   border: 2px solid;
   font-size: 170%;
   color: #000;
   text-decoration: none;
+  z-index: 1;
 }
 
-main.conteiner #groups_list .group_name:first {
+main.conteiner .list .list_item:first {
   margin-right: 0;
+}
+
+main.conteiner .list .list_item:hover {
+  background-color: #dadada;
+}
+
+main.conteiner .list .group_name {
+  width: 20%;
+}
+
+main.conteiner .list#name_list {
+  height: 70vh;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main.conteiner .list .student_name {
+  width: 28%;
+  cursor: pointer;
+}
+
+main.conteiner .list .student_name.checked {
+  background: #dadada;
+}
+
+main.conteiner .list .student_name.checked:hover {
+  background-color: #ffcccc;
+}
+
+main.conteiner .list .discipline_name {
+  width: 28%;
+}
+
+main.conteiner .list .report_name {
+  width: 45%;
+}
+
+main.conteiner .list .curator_report_name {
+  width: 70%;
+}
+
+.modal_window {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 110;
+}
+
+.modal_window .hiden_block {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal_window form {
+  position: fixed;
+  left: 40%;
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: -100%;
+  opacity: 0;
+  -webkit-transition: top 0.7s, opacity 1s;
+  transition: top 0.7s, opacity 1s;
+}
+
+.modal_window form h2,
+.modal_window form h4 {
+  text-align: center;
+  color: #fff;
+}
+
+.modal_window form h2 {
+  margin: 2vh 0;
+}
+
+.modal_window form h4 {
+  margin: 0.5vh 0;
+}
+
+.modal_window form input,
+.modal_window form textarea,
+.modal_window form select {
+  display: block;
+  margin: 3vh auto;
+  height: 4vh;
+  width: 80%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal_window form textarea {
+  text-align: left;
+  height: 15vh;
+  border-radius: 20px;
+  resize: none;
+  padding: 2%;
+}
+
+.modal_window form input[type="submit"] {
+  margin: 2.5vh auto;
+  height: 5vh;
+  width: 60%;
 }
 /*# sourceMappingURL=style.css.map */

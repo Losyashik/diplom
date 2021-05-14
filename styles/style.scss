@@ -8,10 +8,11 @@
     display: flex;
     background-color: rgba($color: #000000, $alpha: .9);
     transition: all .3s ease-in-out;
+    z-index: 20;
     &:hover{
         width: 15vw;
         background-color:#000;
-        z-index: 20;
+        
         .navigation{
             width: 100%;
             .navigation_block{
@@ -34,6 +35,7 @@
             &.selected{
                 background-color: rgb(109, 109, 109);
                 color: #000;
+                img{filter:grayscale(0);}
             }
             cursor: pointer;
             display:block;
@@ -47,6 +49,7 @@
                 float: left;
                 width: 4vw;
                 height: 4vw;
+                filter:grayscale(1);
             }
             p{
                 display: inline-block;
@@ -74,35 +77,243 @@
 }
 h1{
     position: absolute;
-    left: 12vw;
+    left: 10.5vw;
     width: 55vw;
     text-align: center;
+}
+.loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(65, 65, 65 , 0.94);
+    display: none;
+    z-index: 15;
+    top: 0;
+    left: 0;
+    img{
+        display: block;
+        position: absolute;
+        width: 8vw;
+        height: 8vw;
+        top: calc(50% - 4vw);
+        left: calc(50% - 4vw);
+    }
 }
 main.conteiner{
     position: absolute;
     top: 18vh;
-    left: 15.5vw;
-    width: 80vw;
+    left: 8.5vw;
+    width: 87vw;
     height: 82vh;
-    #groups_list{
+    nav.sort {
+        height: 6vh;
+        padding: 2vh 0;
+        border: 1px solid #dadada;
+        display: flex;
+        .sort_interface{
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            height: 100%;
+            .select_block{
+                width: 40%;
+                height: calc(100% - 2px);
+                border: 1px solid;
+                cursor: pointer;
+                margin-right: 5%;
+                user-select: none;
+                .select{
+                    height: 100%;
+                    width: 100%;
+                    position: relative;
+                    span{
+                        display: block;
+                        padding: 3% 25px 0 15px;
+                        margin-bottom: 3%;
+                        height: 60%;
+                        overflow: hidden;
+                    }
+                    &::after{
+                        display: block;
+                        content: '';
+                        width: 15px;
+                        height: 15px;
+                        background-image: url('../images/down-arrow.png');
+                        background-size: 100% 100%;
+                        position: absolute;
+                        right:9px;
+                        top:calc(50% - 16px / 2);
+                    }
+                }
+                .select_list{
+                    position: relative;
+                    width: calc(100% - 2px);
+                    margin-top: 1vh;
+                    z-index: 10;
+                    transition: height .3s;
+                    background-color: #fff;
+                    &.activ{
+                        display: block;
+                        border: 1px solid #a0a0a0;
+                    }
+                    .select_item{
+                        width: 100%;
+                        border-bottom: 1px solid #a0a0a0;
+                        padding-top: 2px;
+                        display: none;
+                        &.activ{
+                            display: block;
+                        }
+                        &.selected{
+                            background-color: #dadada;
+                        }
+                        &:last-child{
+                            border:none
+                        }
+                        &:hover{
+                            background:#dadada;
+                        }
+                        span{
+                            display: block;
+                            padding: 3% 25px 3% 15px;
+                        }
+                    }
+                }
+                
+            }
+            &#search{
+                justify-content: flex-end;
+            }
+            #search_group{
+                display: block;
+                width: 40%;
+            }
+            .search_button{
+                width: 15%;
+                margin: 0 1%;
+            }
+            .add_lecture{
+                display: block;
+                width: 36%;
+                padding: 0 2%;
+                margin-left: 5%;
+            }
+            #button_add_lecture{
+                width: 30%;
+                background: #c9dcff;
+                margin: 0 10%;
+            }
+            &#add_lecture{
+                justify-content: flex-end;
+            }
+        }
+    }    
+    .list{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        .group_name{
+        user-select: none;
+        
+        .list_item{
             display: block;
-            width: 20%;
             margin: 10px 2%;
             text-align: center;
             border: 2px solid;
             font-size: 170%;
             color: #000;
             text-decoration: none;
-
+            z-index: 1;
             &:first{
                 margin-right: 0;
             }
-
+            &:hover{
+                background-color: #dadada;
+            }
+        }
+        .group_name{
+            width: 20%;
+        }
+        &#name_list{
+            height: 70vh;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            flex-direction: column;
+            
+        }
+        .student_name{
+            width: 28%;
+            cursor: pointer;
+            &.checked{
+                background: #dadada;
+                &:hover{
+                    background-color: #ffcccc;
+                }
+            }
+        }
+        .discipline_name{
+            width: 28%;
+        }
+        .report_name{
+            width: 45%;
+        }
+        .curator_report_name{
+            width: 70%;
         }
     }
-    
+}
+.modal_window {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 110;
+    .hiden_block {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    form {
+        position: fixed;
+        left: 40%;
+        width: 20%;
+        background-color: rgba(0, 0, 0, 0.4);
+        top: -100%;
+        opacity: 0;
+        transition: top 0.7s, opacity 1s;
+        h2,
+        h4 {
+            text-align: center;
+            color: #fff;
+        }
+        h2 {
+            margin: 2vh 0;
+        }
+        h4 {
+            margin: 0.5vh 0;
+        }
+        input,
+        textarea,
+        select {
+            display: block;
+            margin: 3vh auto;
+            height: 4vh;
+            width: 80%;
+            border-radius: 10px;
+            text-align: center;
+        }
+        textarea {
+            text-align: left;
+            height: 15vh;
+            border-radius: 20px;
+            resize: none;
+            padding: 2%;
+        }
+        input[type="submit"] {
+            margin: 2.5vh auto;
+            height: 5vh;
+            width: 60%;
+        }
+    }
 }

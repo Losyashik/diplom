@@ -3,16 +3,18 @@ window.onload = function() {
     function reAnswer(state, title){
         $.ajax ({
             url: "scripts/content.php",
-            type: "POST",
+            type: "post",
             data: {page: state, name:title},
             success: function (result) { 
                 $(".conteiner").html(result);
                 $("#title").html(title)
+                $('.loader').hide();
              }
         });
     }
 
     function handlerAnchors() {
+        $('.loader').show();
         $(".navigation a").removeClass('selected');
         $(this).addClass('selected');
         var state = {
@@ -27,11 +29,10 @@ window.onload = function() {
         return false;
     }
 
-    var anchors = document.getElementsByTagName( 'a' );
-    for( var i = 0; i < anchors.length; i++ ) {
-        anchors[ i ].onclick = handlerAnchors;
-    }
-    //Изменение стия меню при переходе через стрелки браузера и вызов функции reAnswer
+    $(document).on('click','a',function(){
+        handlerAnchors();
+    })
+    //Изменение стиля меню при переходе через стрелки браузера и вызов функции reAnswer
      window.onpopstate = function( e ) {
          $(".navigation a").removeClass('selected');
          $('.navigation a[href$="' + history.state.url + '"]').addClass('selected');
