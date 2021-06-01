@@ -1,5 +1,5 @@
 .navigation_panel {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 4vw;
@@ -9,8 +9,8 @@
   display: -ms-flexbox;
   display: flex;
   background-color: rgba(0, 0, 0, 0.9);
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   z-index: 20;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .navigation_panel:hover .navigation .navigation_block img {
-  margin: 0 .5vw;
+  margin: 0 0.5vw;
 }
 
 .navigation_panel .navigation {
@@ -48,7 +48,7 @@
   text-decoration: none;
   height: 4vw;
   overflow: hidden;
-  padding: .5vw 0;
+  padding: 0.5vw 0;
 }
 
 .navigation_panel .navigation .navigation_block.selected {
@@ -76,14 +76,15 @@
 }
 
 .login-informaton {
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   top: 0;
   right: 0;
   width: 30vw;
   height: 15vh;
   background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
-  padding: .5vh .5vw;
+  padding: 0.5vh 0.5vw;
   color: #fff;
 }
 
@@ -95,7 +96,8 @@
 }
 
 h1 {
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   left: 10.5vw;
   width: 55vw;
   text-align: center;
@@ -129,6 +131,17 @@ main.conteiner {
   height: 82vh;
 }
 
+main.conteiner::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 18vh;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
 main.conteiner nav.sort {
   height: 6vh;
   padding: 2vh 0;
@@ -136,6 +149,10 @@ main.conteiner nav.sort {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: fixed;
+  background-color: #fff;
+  width: 87vw;
+  z-index: 14;
 }
 
 main.conteiner nav.sort .sort_interface {
@@ -177,7 +194,7 @@ main.conteiner nav.sort .sort_interface .select_block .select span {
 
 main.conteiner nav.sort .sort_interface .select_block .select::after {
   display: block;
-  content: '';
+  content: "";
   width: 15px;
   height: 15px;
   background-image: url("../images/down-arrow.png");
@@ -192,9 +209,11 @@ main.conteiner nav.sort .sort_interface .select_block .select_list {
   width: calc(100% - 2px);
   margin-top: 1vh;
   z-index: 10;
-  -webkit-transition: height .3s;
-  transition: height .3s;
+  -webkit-transition: height 0.3s;
+  transition: height 0.3s;
   background-color: #fff;
+  max-height: 50vh;
+  overflow: auto;
 }
 
 main.conteiner nav.sort .sort_interface .select_block .select_list.activ {
@@ -230,15 +249,41 @@ main.conteiner nav.sort .sort_interface .select_block .select_list .select_item 
   padding: 3% 25px 3% 15px;
 }
 
+main.conteiner nav.sort .sort_interface .date {
+  width: 35%;
+  margin: 0 2%;
+  text-align: center;
+}
+
+main.conteiner nav.sort .sort_interface .reason_text {
+  width: 50%;
+  resize: none;
+  overflow: auto;
+  place-content: center;
+  margin: 0 3%;
+}
+
 main.conteiner nav.sort .sort_interface#search {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
+main.conteiner nav.sort .sort_interface#print_block {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main.conteiner nav.sort .sort_interface#print_block .print {
+  width: 15%;
+  margin: 0 1%;
+}
+
 main.conteiner nav.sort .sort_interface #search_group {
   display: block;
-  width: 40%;
+  width: 50%;
+  margin: 0 2vw;
 }
 
 main.conteiner nav.sort .sort_interface .search_button {
@@ -253,7 +298,8 @@ main.conteiner nav.sort .sort_interface .add_lecture {
   margin-left: 5%;
 }
 
-main.conteiner nav.sort .sort_interface #button_add_lecture {
+main.conteiner nav.sort .sort_interface #button_add_lecture,
+main.conteiner nav.sort .sort_interface #button_add_reason {
   width: 30%;
   background: #c9dcff;
   margin: 0 10%;
@@ -263,6 +309,11 @@ main.conteiner nav.sort .sort_interface#add_lecture {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+main.conteiner nav.sort .sort_interface .select_day {
+  width: 50%;
+  text-align: center;
 }
 
 main.conteiner .list {
@@ -280,6 +331,10 @@ main.conteiner .list {
           user-select: none;
 }
 
+main.conteiner .list#reports, main.conteiner .list#groups_list, main.conteiner .list#name_list, main.conteiner .list#reason_list {
+  margin-top: 11vh;
+}
+
 main.conteiner .list .list_item {
   display: block;
   margin: 10px 2%;
@@ -291,6 +346,10 @@ main.conteiner .list .list_item {
   z-index: 1;
 }
 
+main.conteiner .list .list_item.student_name {
+  background-color: #f7aaaa;
+}
+
 main.conteiner .list .list_item:first {
   margin-right: 0;
 }
@@ -299,8 +358,64 @@ main.conteiner .list .list_item:hover {
   background-color: #dadada;
 }
 
+main.conteiner .list .list_item.admin_list {
+  width: 70%;
+}
+
+main.conteiner .list .list_item.admin_list .list {
+  max-height: 30vh;
+  overflow: auto;
+  font-size: 80%;
+}
+
+main.conteiner .list .list_item.admin_list .list table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-bottom: 1vh;
+}
+
+main.conteiner .list .list_item.admin_list .list table td {
+  border: 1px solid;
+}
+
 main.conteiner .list .group_name {
   width: 20%;
+}
+
+main.conteiner .list .reason {
+  width: 80%;
+  border-collapse: collapse;
+  font-size: 110%;
+  border: 1px solid;
+}
+
+main.conteiner .list .reason:hover {
+  background: none;
+}
+
+main.conteiner .list .reason table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+main.conteiner .list .reason table tr th,
+main.conteiner .list .reason table tr td {
+  border-right: 1px solid;
+}
+
+main.conteiner .list .reason table tr th:last-child,
+main.conteiner .list .reason table tr td:last-child {
+  border: none;
+  padding: 0;
+}
+
+main.conteiner .list .reason table tr th {
+  border-bottom: 1px solid;
+}
+
+main.conteiner .list .reason table tr .delete_reason:hover {
+  color: #640000;
+  text-decoration: underline;
 }
 
 main.conteiner .list#name_list {
@@ -314,6 +429,7 @@ main.conteiner .list#name_list {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: auto;
 }
 
 main.conteiner .list .student_name {
@@ -334,24 +450,129 @@ main.conteiner .list .discipline_name {
 }
 
 main.conteiner .list .report_name {
-  width: 45%;
+  width: 20%;
+}
+
+main.conteiner .list .report_name:hover {
+  background-color: #dadada;
+}
+
+main.conteiner .list .report_name h5 {
+  margin: 4% 0 0;
+  padding-bottom: 4%;
+  border-bottom: 1px solid;
+}
+
+main.conteiner .list .report_name .discipline_list a {
+  display: block;
+  font-size: 75%;
+  text-decoration: none;
+  color: #000;
+  padding: 2% 0;
+  border-top: 1px solid #000;
+}
+
+main.conteiner .list .report_name .discipline_list a:hover {
+  background-color: #fff;
 }
 
 main.conteiner .list .curator_report_name {
   width: 70%;
 }
 
+main.conteiner .request_mounth {
+  margin-top: 11vh;
+}
+
+main.conteiner .request_mounth table {
+  width: 100%;
+  border-collapse: collapse;
+  height: 100%;
+}
+
+main.conteiner .request_mounth table td,
+main.conteiner .request_mounth table th {
+  border: 1px solid;
+}
+
+main.conteiner .request_mounth table td .name,
+main.conteiner .request_mounth table th .name {
+  text-align: left;
+}
+
+main.conteiner .request_mounth table .h {
+  text-align: center;
+}
+
+main.conteiner .request_mounth table td {
+  width: 1.5vw;
+}
+
+main.conteiner .open_request_block {
+  position: absolute;
+  width: 15%;
+  z-index: 15;
+  border: 1px solid;
+  background: #fff;
+}
+
+main.conteiner .open_request_block .open_reqest {
+  display: block;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.5vh 0.5vw;
+}
+
+main.conteiner .open_request_block .open_reqest:hover {
+  background-color: #dadada;
+}
+
+main.conteiner .day_request {
+  margin-top: 5vw;
+}
+
+main.conteiner .day_request table {
+  width: 50%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+main.conteiner .day_request table td,
+main.conteiner .day_request table th {
+  border: 1px solid;
+  padding: 2% 0.5%;
+  text-align: center;
+}
+
+main.conteiner .day_request table td {
+  min-height: 5vh;
+  max-width: 50%;
+}
+
+main.conteiner .day_request table td.pair {
+  width: 7%;
+}
+
+main.conteiner .day_request table td.name {
+  width: 25%;
+}
+
 .modal_window {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  display: block;
+  display: none;
   top: 0;
   left: 0;
   z-index: 110;
 }
 
-.modal_window .hiden_block {
+.modal_window#login {
+  display: block;
+}
+
+.modal_window .hidden_block {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -361,11 +582,122 @@ main.conteiner .list .curator_report_name {
   position: fixed;
   left: 40%;
   width: 20%;
-  background-color: rgba(0, 0, 0, 0.4);
-  top: -100%;
-  opacity: 0;
+  padding: 1%;
+  left: 38%;
+  background-color: #515151;
   -webkit-transition: top 0.7s, opacity 1s;
   transition: top 0.7s, opacity 1s;
+}
+
+.modal_window form.login {
+  top: -100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+}
+
+.modal_window form.add_reason {
+  top: 15%;
+  width: 30%;
+  left: 35%;
+}
+
+.modal_window form .select_block {
+  width: 80%;
+  height: 4.5vh;
+  border: 1px solid;
+  cursor: pointer;
+  margin: 2vh auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: #000;
+  border-radius: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modal_window form .select_block .select {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.modal_window form .select_block .select span {
+  display: block;
+  padding: 1% 25px 0 0;
+  text-align: center;
+  margin-bottom: 1%;
+  height: 60%;
+  overflow: hidden;
+}
+
+.modal_window form .select_block .select::after {
+  display: block;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("../images/down-arrow.png");
+  background-size: 100% 100%;
+  position: absolute;
+  right: 9px;
+  top: calc(50% - 16px / 2);
+}
+
+.modal_window form .select_block .select_list {
+  border-radius: 10px;
+  position: relative;
+  background-color: #777676;
+  width: calc(100% - 2px);
+  margin-top: 1vh;
+  z-index: 10;
+  -webkit-transition: height 0.3s;
+  transition: height 0.3s;
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.modal_window form .select_block .select_list.activ {
+  display: block;
+  border: 1px solid #a0a0a0;
+}
+
+.modal_window form .select_block .select_list .select_item {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #a0a0a0;
+  padding-top: 2px;
+  display: none;
+}
+
+.modal_window form .select_block .select_list .select_item.activ {
+  display: block;
+}
+
+.modal_window form .select_block .select_list .select_item.selected {
+  background-color: #dadada;
+}
+
+.modal_window form .select_block .select_list .select_item:last-child {
+  border: none;
+}
+
+.modal_window form .select_block .select_list .select_item:hover {
+  background: #dadada;
+  color: #000;
+}
+
+.modal_window form .select_block .select_list .select_item span {
+  display: block;
+  padding: 2% 25px 2% 15px;
+}
+
+.modal_window form .error {
+  text-align: center;
+  color: red;
+  width: 100%;
+  margin: 3vh 0;
 }
 
 .modal_window form h2,
@@ -383,25 +715,267 @@ main.conteiner .list .curator_report_name {
 }
 
 .modal_window form input,
-.modal_window form textarea,
-.modal_window form select {
+.modal_window form textarea {
   display: block;
   margin: 3vh auto;
+  resize: none;
   height: 4vh;
   width: 80%;
   border-radius: 10px;
   text-align: center;
 }
 
+.modal_window form input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin: 0 0.3vw;
+}
+
+.modal_window form label {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
 .modal_window form textarea {
+  font-family: Arial, sans-serif;
   text-align: left;
-  height: 15vh;
-  border-radius: 20px;
+  height: 10vh;
+  border-radius: 10px;
   resize: none;
   padding: 2%;
 }
 
+.modal_window form textarea::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.modal_window form textarea:-ms-input-placeholder {
+  text-align: center;
+}
+
+.modal_window form textarea::-ms-input-placeholder {
+  text-align: center;
+}
+
+.modal_window form textarea::placeholder {
+  text-align: center;
+}
+
 .modal_window form input[type="submit"] {
+  margin: 2.5vh auto;
+  height: 5vh;
+  width: 60%;
+}
+
+#print {
+  height: 620px;
+}
+
+#print table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#print table td,
+#print table th {
+  border: 1px solid;
+}
+
+#print table td .name,
+#print table th .name {
+  text-align: left;
+}
+
+#print table .h {
+  text-align: center;
+}
+
+#print table td {
+  width: 1.5vw;
+}
+
+.add_group {
+  background-color: #515151;
+  -webkit-transition: top 0.7s, opacity 1s;
+  transition: top 0.7s, opacity 1s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.add_group .data {
+  width: 50%;
+}
+
+.add_group .data.students_data .stud_inp {
+  overflow: auto;
+  max-height: 40vh;
+}
+
+.add_group .data.students_data .stud_inp .student {
+  border: 1px solid;
+  margin: 2vh 0;
+  padding: 0.5vh 0;
+}
+
+.add_group .data.students_data .stud_inp .student input {
+  margin: 0 auto;
+}
+
+.add_group .error {
+  text-align: center;
+  color: red;
+  width: 100%;
+  margin: 3vh 0;
+}
+
+.add_group .select_block {
+  width: 80%;
+  height: 4.5vh;
+  border: 1px solid;
+  cursor: pointer;
+  margin: 2vh auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: #000;
+  border-radius: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.add_group .select_block .select {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.add_group .select_block .select span {
+  display: block;
+  padding: 1% 25px 0 0;
+  text-align: center;
+  margin-bottom: 1%;
+  height: 60%;
+  overflow: hidden;
+}
+
+.add_group .select_block .select::after {
+  display: block;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("../images/down-arrow.png");
+  background-size: 100% 100%;
+  position: absolute;
+  right: 9px;
+  top: calc(50% - 16px / 2);
+}
+
+.add_group .select_block .select_list {
+  border-radius: 10px;
+  position: relative;
+  background-color: #777676;
+  width: calc(100% - 2px);
+  margin-top: 1vh;
+  z-index: 10;
+  -webkit-transition: height 0.3s;
+  transition: height 0.3s;
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.add_group .select_block .select_list.activ {
+  display: block;
+  border: 1px solid #a0a0a0;
+}
+
+.add_group .select_block .select_list .select_item {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #a0a0a0;
+  padding-top: 2px;
+  display: none;
+}
+
+.add_group .select_block .select_list .select_item.activ {
+  display: block;
+}
+
+.add_group .select_block .select_list .select_item.selected {
+  background-color: #dadada;
+}
+
+.add_group .select_block .select_list .select_item:last-child {
+  border: none;
+}
+
+.add_group .select_block .select_list .select_item:hover {
+  background: #dadada;
+  color: #000;
+}
+
+.add_group .select_block .select_list .select_item span {
+  display: block;
+  padding: 2% 25px 2% 15px;
+}
+
+.add_group h2,
+.add_group h4 {
+  text-align: center;
+  color: #fff;
+}
+
+.add_group h2 {
+  margin: 2vh 0;
+}
+
+.add_group h4 {
+  margin: 0.5vh 0;
+}
+
+.add_group input,
+.add_group textarea {
+  display: block;
+  margin: 3vh auto;
+  resize: none;
+  height: 4vh;
+  width: 80%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.add_group textarea {
+  font-family: Arial, sans-serif;
+  text-align: left;
+  height: 10vh;
+  border-radius: 10px;
+  resize: none;
+  padding: 2%;
+}
+
+.add_group textarea::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.add_group textarea:-ms-input-placeholder {
+  text-align: center;
+}
+
+.add_group textarea::-ms-input-placeholder {
+  text-align: center;
+}
+
+.add_group textarea::placeholder {
+  text-align: center;
+}
+
+.add_group input[type="submit"] {
   margin: 2.5vh auto;
   height: 5vh;
   width: 60%;

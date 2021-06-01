@@ -11,6 +11,7 @@ if(isset($_POST['login'])){
             $_SESSION['user']=[
                 "id"=>$data['id'],
                 "full_name"=>$data['surname'].' '.$data['name'].' '.$data['patronymic'],
+                "role" => $data['role_id'],
                 "last_time" => time()
             ];
             header('Location:/');
@@ -35,7 +36,7 @@ function openLoginWindow()
         <title>Авторизация</title>
     </head>  
     <div class="modal_window" id="login">
-        <div class="hiden_block" data="login"></div>
+        <div class="hidden_block"></div>
         <form class="login" method="POST">
             <h2>Авторизация</h2>
             <input name="login" type="text" placeholder="Логин">

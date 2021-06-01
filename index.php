@@ -1,15 +1,14 @@
 <?php
-include("scripts/login.php");
+include_once("scripts/modules/login.php");
 if (isset($_SESSION['user']))
-    if(time() - $_SESSION['user']['last_time'] <= 1200){
-        $_SESSION['user']['last_time']= time();
+    if (time() - $_SESSION['user']['last_time'] <= 1200) {
+        $_SESSION['user']['last_time'] = time();
         $user = $_SESSION['user'];
-    }
-    else{
+    } else {
         unset($_SESSION['user']);
         header('Location:/');
     }
-else{
+else {
     openLoginWindow();
 }
 $link = mysqli_connect('localhost', 'root', '', 'linoleum');
@@ -35,7 +34,7 @@ include("scripts/menu.php");
     </nav>
     <h1 id="title"> <?php echo $data->title(); ?></h1>
     <main class="login-informaton">
-        <p><?php echo($_SESSION['user']['full_name'])?></p>
+        <p><?php echo ($_SESSION['user']['full_name']) ?></p>
         <button class="exit">Выход</button>
     </main>
     <main class="conteiner">
@@ -43,11 +42,12 @@ include("scripts/menu.php");
     </main>
     <script src="scripts/exit.js"></script>
     <script src="scripts/select.js"></script>
-    
+    <script src="scripts/requests.js"></script>
+
     <script src='scripts/add_students/chek_student.js'></script>
     <div id='script' style="display: none;"></div>
     <div class="loader">
-        <img src="images/loader1.gif" alt="Загрузка">
+        <img src="images/loader.gif" alt="Загрузка">
     </div>
 </body>
 

@@ -1,4 +1,22 @@
-var checkLecture;
+function checkLecture(){
+    date = $('#date_lecture').val()
+    pair_number = $('#pair_number').val()
+    if(pair_number != '' & date != ''){
+        $.ajax({
+            url:'scripts/add_students/checkLecture.php',
+            method:'post',
+            data:{
+                pair_number:pair_number,
+                date:date,
+                gdp:gdp
+            },
+            success:function(result){
+                $("#script").html(result);
+                edit();
+            }
+        })
+    }
+};
 function check(checkBlock){
     studentId = checkBlock.data('value');    
     if(!checkBlock.hasClass('checked')){
@@ -43,25 +61,10 @@ $(document).on('click','#button_add_lecture', function(){
         },
         success: function(result){
             alert(result);
+            checkLecture()
         }
     })
 })
 $(document).on('change','.add_lecture',function(event){
-    date = $('#date_lecture').val()
-    pair_number = $('#pair_number').val()
-    if(pair_number != '' & date != ''){
-        $.ajax({
-            url:'scripts/add_students/checkLecture.php',
-            method:'post',
-            data:{
-                pair_number:pair_number,
-                date:date,
-                discipline:disciplineId
-            },
-            success:function(result){
-                $("#script").html(result);
-                edit();
-            }
-        })
-    }
+    checkLecture();
 });

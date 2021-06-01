@@ -26,9 +26,10 @@ $(document).on('click','.select_item',event=>{
             $(e).removeClass('selected');
         }
     });
-    item.addClass('selected')
+    item.addClass('selected');
     select = list.prev('.select');
     id = select.data('name');
+    
     $('#'+id).val(item.data('value'));
     $(select[0].children[0]).html($(event.currentTarget.children).html());
 })

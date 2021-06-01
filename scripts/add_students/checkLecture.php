@@ -3,13 +3,14 @@ $link = mysqli_connect('', 'root', '', 'isup');
 $result = $link->query("SELECT * FROM lecture WHERE date='".$_POST['date']."' AND pair_number = ".$_POST['pair_number']);
 if(mysqli_num_rows($result)>0){
     session_start();
-    $result = $link->query("SELECT * FROM lecture WHERE gdp_id in (SELECT id FROM gdp WHERE teacher_id=".$_SESSION['user']['id']." AND discipline_id = ".$_POST['discipline'].") AND date='".$_POST['date']."' AND pair_number = ".$_POST['pair_number']);
+    $result = $link->query("SELECT * FROM lecture WHERE gdp_id = ".$_POST['gdp']." AND date='".$_POST['date']."' AND pair_number = ".$_POST['pair_number']);
     
     if(mysqli_num_rows($result)>0){
         $lecture_id = mysqli_fetch_assoc($result)['id'];
         echo "
             <script>
                 function edit(){
+
                     ";
                     $result = $link->query("SELECT * FROM result WHERE lecture_id in (SELECT id FROM lecture WHERE date='".$_POST['date']."' AND pair_number = ".$_POST['pair_number'].")")or die (mysqli_error($link));
                     for($data = [];$row=mysqli_fetch_assoc($result);$data[]=$row);
@@ -21,6 +22,7 @@ if(mysqli_num_rows($result)>0){
                     checkedId=[$result];
                     lectureId=$lecture_id;
                     $('.student_name').each(function(i,e){
+                        $(e).removeClass('checked');
                         i = $(e).data('value')
                         if(!checkedId.includes(i)){
                             $(e).addClass('checked');
