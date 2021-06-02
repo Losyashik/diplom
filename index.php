@@ -11,7 +11,6 @@ if (isset($_SESSION['user']))
 else {
     openLoginWindow();
 }
-$link = mysqli_connect('localhost', 'root', '', 'linoleum');
 include("scripts/menu.php");
 ?>
 <!DOCTYPE html>
