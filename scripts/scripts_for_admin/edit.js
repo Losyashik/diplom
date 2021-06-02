@@ -73,6 +73,9 @@ $(document).on('click','.submit', event=>{
             data:add_data,
             success:function(text){
                 $(error).html(text);
+                add_data='';
+                $(form)[0].reset();
+                break;
             }
         })
     }   
@@ -110,6 +113,8 @@ $(document).on('click','.delete',event=>{
             data:add_data,
             success:function(text){
                 alert(text);
+                add_data='';
+                break;
             }
         })
     else{
