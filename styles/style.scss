@@ -293,6 +293,11 @@ main.conteiner {
                         margin-bottom: 1vh;
                         td {
                             border: 1px solid;
+                            .delete_admin{
+                                border:2px solid;
+                                margin: 2px;
+                                display: inline-block;
+                            }
                         }
                     }
                 }

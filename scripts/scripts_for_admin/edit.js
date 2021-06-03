@@ -2,7 +2,7 @@ var state = {
     title: "Панель администратора",
     url: "./admin"
 }
-$(document).on('click','.submit', event=>{
+$('.submit').on('click', event=>{
     
     dataName  = event.currentTarget.name;
     form = $(event.target).parent()
@@ -75,7 +75,6 @@ $(document).on('click','.submit', event=>{
                 $(error).html(text);
                 add_data='';
                 $(form)[0].reset();
-                break;
             }
         })
     }   
@@ -83,7 +82,7 @@ $(document).on('click','.submit', event=>{
         return false;
     }
 })
-$(document).on('click','.delete',event=>{
+$('.delete_admin').on('click',event=>{
     listName = $(event.currentTarget).data('name-list');
     id = $(event.currentTarget).data('delete-id');
     add_data = {formName:listName,id:id}
@@ -106,7 +105,9 @@ $(document).on('click','.delete',event=>{
     }
     
     result = prompt(title);
-    if(result == 'true')
+   
+    if(result){
+        console.log(result);
         $.ajax({
             url:'scripts/scripts_for_admin/edit.php',
             type:'post',
@@ -114,10 +115,10 @@ $(document).on('click','.delete',event=>{
             success:function(text){
                 alert(text);
                 add_data='';
-                break;
             }
         })
-    else{
+    }
+     else{
         return false;
     }
 })

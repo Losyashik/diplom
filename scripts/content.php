@@ -140,7 +140,7 @@ switch ($page) {
                         <table>
                             <tr>
                                 <td>".$elem['name']."</td>
-                                <td><span class='delete' data-name-list = 'delete_specialty' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><span class='delete_admin' data-name-list = 'delete_specialty' data-delete-id='".$elem['id']."'>Удалить</span></td>
                             </tr>
                         </table>
                         ";
@@ -162,7 +162,7 @@ switch ($page) {
                         <table>
                             <tr>
                                 <td>".$elem['surname']." ".$elem['name']." ".$elem['patronymic']."</td>
-                                <td><span class='delete' data-name-list = 'delete_teacher' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><span class='delete_admin' data-name-list = 'delete_teacher' data-delete-id='".$elem['id']."'>Удалить</span></td>
                             </tr>
                         </table>
                         ";
@@ -184,7 +184,7 @@ switch ($page) {
                         <table>
                             <tr>
                                 <td>".$elem['name']."</td>
-                                <td><span class='delete' data-name-list = 'delete_discipline' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><span class='delete_admin' data-name-list = 'delete_discipline' data-delete-id='".$elem['id']."'>Удалить</span></td>
                             </tr>
                         </table>
                         ";
@@ -208,7 +208,7 @@ switch ($page) {
                                 <td>".$link->query("SELECT name FROM discipline WHERE id =".$elem['discipline_id'])->fetch_assoc()['name']."</td>
                                 <td>".$link->query("SELECT surname FROM teacher WHERE id =".$elem['teacher_id'])->fetch_assoc()['surname']."</td>
                                 <td>".$link->query("SELECT name FROM groups WHERE id =".$elem['group_id'])->fetch_assoc()['name']."</td>
-                                <td><span class='delete' data-name-list = 'delete_gdp' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><span class='delete_admin' data-name-list = 'delete_gdp' data-delete-id='".$elem['id']."'>Удалить</span></td>
                             </tr>
                         </table>
                         ";
@@ -229,7 +229,7 @@ switch ($page) {
                         <table>
                             <tr>
                                 <td>".$elem['name']."</td>
-                                <td><span class='delete' data-name-list = 'delete_group' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><span class='delete_admin' data-name-list = 'delete_group' data-delete-id='".$elem['id']."'>Удалить</span></td>
                             </tr>
                         </table>
                         ";

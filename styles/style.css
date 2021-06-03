@@ -378,6 +378,12 @@ main.conteiner .list .list_item.admin_list .list table td {
   border: 1px solid;
 }
 
+main.conteiner .list .list_item.admin_list .list table td .delete_admin {
+  border: 2px solid;
+  margin: 2px;
+  display: inline-block;
+}
+
 main.conteiner .list .group_name {
   width: 20%;
 }
