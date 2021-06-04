@@ -476,7 +476,7 @@ switch ($page) {
 
                 ";
         break;
-// Error 404 если не куратор
+//Error 404 если не куратор
     case $page and !isset($supervised_group):
         echo "Error 404";
     break;

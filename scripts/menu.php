@@ -135,7 +135,7 @@ class load_page_vars
         $context  = stream_context_create($opts); //Создаиние контекста запроса
 
         $url = $this->siteURL() . "/scripts/content.php";
-        $content = file_get_contents($url, FALSE, $context); //отправка post запроса в contrnt.php
+        $content = file_get_contents($url, FALSE, $context); //отправка post запроса в content.php
 
         return $content;
     }
@@ -165,4 +165,4 @@ class load_page_vars
         return dirname($siteUrl);
     }
 }
-$data = new load_page_vars();
+

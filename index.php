@@ -12,6 +12,7 @@ else {
     openLoginWindow();
 }
 include("scripts/menu.php");
+$data = new load_page_vars();
 ?>
 <!DOCTYPE html>
 <html lang="ru">

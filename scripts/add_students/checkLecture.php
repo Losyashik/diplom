@@ -22,10 +22,10 @@ if(mysqli_num_rows($result)>0){
                     checkedId=[$result];
                     lectureId=$lecture_id;
                     $('.student_name').each(function(i,e){
-                        $(e).removeClass('checked');
+                        $(e).addClass('checked');
                         i = $(e).data('value')
                         if(!checkedId.includes(i)){
-                            $(e).addClass('checked');
+                            $(e).removeClass('checked');
                         }
                     })
                 }
