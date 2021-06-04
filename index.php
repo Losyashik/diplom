@@ -43,8 +43,6 @@ $data = new load_page_vars();
     <script src="scripts/exit.js"></script>
     <script src="scripts/select.js"></script>
     <script src="scripts/requests.js"></script>
-
-    <script src='scripts/add_students/chek_student.js'></script>
     <div id='script' style="display: none;"></div>
     <div class="loader">
         <img src="images/loader.gif" alt="Загрузка">

@@ -30,6 +30,7 @@
 .navigation_panel:hover .navigation .navigation_block:hover {
   background-color: #6d6d6d;
   color: #000;
+  border-radius: 20px 0 0 20px;
 }
 
 .navigation_panel:hover .navigation .navigation_block img {
@@ -54,6 +55,7 @@
 .navigation_panel .navigation .navigation_block.selected {
   background-color: #6d6d6d;
   color: #000;
+  border-radius: 20px 0 0 20px;
 }
 
 .navigation_panel .navigation .navigation_block.selected img {
@@ -80,6 +82,7 @@
   z-index: 2;
   top: 0;
   right: 0;
+  border-radius: 0 0 0 20px;
   width: 30vw;
   height: 15vh;
   background-color: rgba(0, 0, 0, 0.8);
@@ -93,6 +96,7 @@
   font-size: 2.3vh;
   background-color: #686868;
   color: #fff;
+  border-radius: 10px;
 }
 
 h1 {
@@ -127,8 +131,11 @@ main.conteiner {
   position: absolute;
   top: 18vh;
   left: 8.5vw;
+  margin-bottom: 2vh;
+  border: 1px solid #d9d9d9;
+  border-radius: 26px 26px 20px 20px;
   width: 87vw;
-  height: 82vh;
+  min-height: 81vh;
 }
 
 main.conteiner::after {
@@ -136,22 +143,23 @@ main.conteiner::after {
   position: fixed;
   top: 0;
   left: 0;
-  height: 18vh;
+  height: 16vh;
+  border-bottom: 1px solid #1d1d1d;
   width: 100%;
   background-color: #ffffff;
   z-index: 1;
 }
 
 main.conteiner nav.sort {
-  height: 6vh;
-  padding: 2vh 0;
-  border: 1px solid #dadada;
+  height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  top: 18vh;
+  left: 8.5vw;
   position: fixed;
   background-color: #fff;
-  width: 87vw;
+  width: calc(87vw + 2px);
   z-index: 14;
 }
 
@@ -159,11 +167,22 @@ main.conteiner nav.sort .sort_interface {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+  padding: 2vh 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   width: 50%;
-  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  height: calc(100% - 4vh);
+}
+
+main.conteiner nav.sort .sort_interface:first-child {
+  border-radius: 20px 0 0;
+}
+
+main.conteiner nav.sort .sort_interface:last-child {
+  border-radius: 0 20px 0 0;
 }
 
 main.conteiner nav.sort .sort_interface .select_block {
@@ -171,6 +190,8 @@ main.conteiner nav.sort .sort_interface .select_block {
   height: calc(100% - 2px);
   border: 1px solid;
   cursor: pointer;
+  border-radius: 10px;
+  background-color: #fff;
   margin-right: 5%;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -209,6 +230,7 @@ main.conteiner nav.sort .sort_interface .select_block .select_list {
   width: calc(100% - 2px);
   margin-top: 1vh;
   z-index: 10;
+  border-radius: 10px;
   -webkit-transition: height 0.3s;
   transition: height 0.3s;
   background-color: #fff;
@@ -277,7 +299,9 @@ main.conteiner nav.sort .sort_interface#print_block {
 
 main.conteiner nav.sort .sort_interface#print_block .print {
   width: 15%;
-  margin: 0 1%;
+  margin: 0 2%;
+  background-color: #686868;
+  color: #fff;
 }
 
 main.conteiner nav.sort .sort_interface #search_group {
@@ -289,6 +313,8 @@ main.conteiner nav.sort .sort_interface #search_group {
 main.conteiner nav.sort .sort_interface .search_button {
   width: 15%;
   margin: 0 1%;
+  background-color: #686868;
+  color: #fff;
 }
 
 main.conteiner nav.sort .sort_interface .add_lecture {
@@ -301,7 +327,8 @@ main.conteiner nav.sort .sort_interface .add_lecture {
 main.conteiner nav.sort .sort_interface #button_add_lecture,
 main.conteiner nav.sort .sort_interface #button_add_reason {
   width: 30%;
-  background: #c9dcff;
+  background-color: #686868;
+  color: #fff;
   margin: 0 10%;
 }
 
@@ -335,11 +362,16 @@ main.conteiner .list#reports, main.conteiner .list#groups_list, main.conteiner .
   margin-top: 11vh;
 }
 
+main.conteiner .list.admin_list {
+  border-radius: 20px 20px 0 0;
+}
+
 main.conteiner .list .list_item {
   display: block;
   margin: 10px 2%;
   text-align: center;
   border: 2px solid;
+  border-radius: 10px;
   font-size: 170%;
   color: #000;
   text-decoration: none;
@@ -347,7 +379,17 @@ main.conteiner .list .list_item {
 }
 
 main.conteiner .list .list_item.student_name {
+  background-color: rgba(0, 117, 0, 0.418);
+  width: 28%;
+  cursor: pointer;
+}
+
+main.conteiner .list .list_item.student_name.checked {
   background-color: #f7aaaa;
+}
+
+main.conteiner .list .list_item.student_name.checked:hover {
+  background-color: #ff0000;
 }
 
 main.conteiner .list .list_item:first {
@@ -358,30 +400,47 @@ main.conteiner .list .list_item:hover {
   background-color: #dadada;
 }
 
-main.conteiner .list .list_item.admin_list {
+main.conteiner .list .list_item.admin_list_item {
+  background-color: rgba(0, 0, 0, 0.15);
   width: 70%;
+  border-radius: 10px;
 }
 
-main.conteiner .list .list_item.admin_list .list {
+main.conteiner .list .list_item.admin_list_item:hover {
+  color: black;
+}
+
+main.conteiner .list .list_item.admin_list_item .add_button {
+  background-color: #686868;
+  color: #fff;
+  padding: 5px;
+  margin: 0 1% 2%;
+  border-radius: 10px;
+}
+
+main.conteiner .list .list_item.admin_list_item .list {
   max-height: 30vh;
   overflow: auto;
   font-size: 80%;
 }
 
-main.conteiner .list .list_item.admin_list .list table {
+main.conteiner .list .list_item.admin_list_item .list table {
   width: 90%;
   border-collapse: collapse;
   margin-bottom: 1vh;
+  border-radius: 10px;
 }
 
-main.conteiner .list .list_item.admin_list .list table td {
-  border: 1px solid;
+main.conteiner .list .list_item.admin_list_item .list table td {
+  border: 1px solid #000;
+  width: 90%;
 }
 
-main.conteiner .list .list_item.admin_list .list table td .delete_admin {
-  border: 2px solid;
-  margin: 2px;
-  display: inline-block;
+main.conteiner .list .list_item.admin_list_item .list table td .delete_admin {
+  background-color: #686868;
+  color: #fff;
+  padding: 3px;
+  border-radius: 10px;
 }
 
 main.conteiner .list .group_name {
@@ -425,7 +484,6 @@ main.conteiner .list .reason table tr .delete_reason:hover {
 }
 
 main.conteiner .list#name_list {
-  height: 70vh;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -436,19 +494,6 @@ main.conteiner .list#name_list {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: auto;
-}
-
-main.conteiner .list .student_name {
-  width: 28%;
-  cursor: pointer;
-}
-
-main.conteiner .list .student_name.checked {
-  background: #dadada;
-}
-
-main.conteiner .list .student_name.checked:hover {
-  background-color: #ffcccc;
 }
 
 main.conteiner .list .discipline_name {
@@ -476,6 +521,7 @@ main.conteiner .list .report_name .discipline_list a {
   color: #000;
   padding: 2% 0;
   border-top: 1px solid #000;
+  border-radius: 0 0 10px 10px;
 }
 
 main.conteiner .list .report_name .discipline_list a:hover {
@@ -491,7 +537,8 @@ main.conteiner .request_mounth {
 }
 
 main.conteiner .request_mounth table {
-  width: 100%;
+  width: 95%;
+  margin: 0 auto 4vh;
   border-collapse: collapse;
   height: 100%;
 }
@@ -586,6 +633,7 @@ main.conteiner .day_request table td.name {
 
 .modal_window form {
   position: fixed;
+  border-radius: 20px;
   left: 40%;
   width: 20%;
   padding: 1%;
@@ -803,12 +851,16 @@ main.conteiner .day_request table td.name {
 }
 
 .add_group {
-  background-color: #515151;
+  background-color: rgba(0, 0, 0, 0.15);
   -webkit-transition: top 0.7s, opacity 1s;
   transition: top 0.7s, opacity 1s;
+  margin: 0 auto 3% auto;
+  border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: #000;
+  width: 90%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -904,6 +956,7 @@ main.conteiner .day_request table td.name {
 .add_group .select_block .select_list .select_item {
   width: 100%;
   text-align: center;
+  background-color: #dadada;
   border-bottom: 1px solid #a0a0a0;
   padding-top: 2px;
   display: none;
@@ -914,7 +967,7 @@ main.conteiner .day_request table td.name {
 }
 
 .add_group .select_block .select_list .select_item.selected {
-  background-color: #dadada;
+  background-color: #777676;
 }
 
 .add_group .select_block .select_list .select_item:last-child {
@@ -922,8 +975,8 @@ main.conteiner .day_request table td.name {
 }
 
 .add_group .select_block .select_list .select_item:hover {
-  background: #dadada;
-  color: #000;
+  background: #1d1d1d;
+  color: white;
 }
 
 .add_group .select_block .select_list .select_item span {
@@ -934,7 +987,6 @@ main.conteiner .day_request table td.name {
 .add_group h2,
 .add_group h4 {
   text-align: center;
-  color: #fff;
 }
 
 .add_group h2 {
@@ -984,6 +1036,8 @@ main.conteiner .day_request table td.name {
 .add_group input[type="submit"] {
   margin: 2.5vh auto;
   height: 5vh;
-  width: 60%;
+  width: 30%;
+  background: #686868;
+  color: #fff;
 }
 /*# sourceMappingURL=style.css.map */

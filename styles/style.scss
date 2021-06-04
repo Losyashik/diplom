@@ -1,4 +1,4 @@
-    .navigation_panel {
+.navigation_panel {
     position: fixed;
     left: 0;
     top: 0;
@@ -20,6 +20,7 @@
                 &:hover {
                     background-color: rgb(109, 109, 109);
                     color: #000;
+                    border-radius: 20px 0 0 20px;
                 }
                 img {
                     margin: 0 0.5vw;
@@ -35,6 +36,7 @@
             &.selected {
                 background-color: rgb(109, 109, 109);
                 color: #000;
+                border-radius: 20px 0 0 20px;
                 img {
                     filter: grayscale(0);
                 }
@@ -65,6 +67,7 @@
     z-index: 2;
     top: 0;
     right: 0;
+    border-radius: 0 0 0 20px;
     width: 30vw;
     height: 15vh;
     background-color: rgba($color: #000000, $alpha: 0.8);
@@ -76,6 +79,7 @@
         font-size: 2.3vh;
         background-color: #686868;
         color: #fff;
+        border-radius: 10px;
     }
 }
 h1 {
@@ -107,37 +111,52 @@ main.conteiner {
     position: absolute;
     top: 18vh;
     left: 8.5vw;
+    margin-bottom: 2vh;
+    border: 1px solid #d9d9d9;
+    border-radius: 26px 26px 20px 20px;
     width: 87vw;
-    height: 82vh;
+    min-height: 81vh;
     &::after {
         content: "";
         position: fixed;
         top: 0;
         left: 0;
-        height: 18vh;
+        height:16vh ;
+        border-bottom: 1px solid #1d1d1d;
         width: 100%;
         background-color: #ffffff;
         z-index: 1;
     }
     nav.sort {
-        height: 6vh;
-        padding: 2vh 0;
-        border: 1px solid #dadada;
+        height: 10vh;
         display: flex;
+        top: 18vh;
+        left: 8.5vw;
         position: fixed;
         background-color: #fff;
-        width: 87vw;
+        width: calc(87vw + 2px);
         z-index: 14;
         .sort_interface {
             display: flex;
+            position: relative;
+            padding: 2vh 0;
             justify-content: center;
             width: 50%;
-            height: 100%;
+            background-color: rgba(0, 0, 0, 0.15);
+            height: calc(100% - 4vh);
+            &:first-child {
+                border-radius: 20px 0 0;
+            }
+            &:last-child {
+                border-radius: 0 20px 0 0;
+            }
             .select_block {
                 width: 40%;
                 height: calc(100% - 2px);
                 border: 1px solid;
                 cursor: pointer;
+                border-radius: 10px;
+                background-color: #fff;
                 margin-right: 5%;
                 user-select: none;
                 .select {
@@ -168,6 +187,7 @@ main.conteiner {
                     width: calc(100% - 2px);
                     margin-top: 1vh;
                     z-index: 10;
+                    border-radius: 10px;
                     transition: height 0.3s;
                     background-color: #fff;
                     max-height: 50vh;
@@ -219,7 +239,9 @@ main.conteiner {
                 justify-content: flex-end;
                 .print {
                     width: 15%;
-                    margin: 0 1%;
+                    margin: 0 2%;
+                    background-color: #686868;
+                    color: #fff;
                 }
             }
             #search_group {
@@ -230,6 +252,8 @@ main.conteiner {
             .search_button {
                 width: 15%;
                 margin: 0 1%;
+                background-color: #686868;
+                color: #fff;
             }
             .add_lecture {
                 display: block;
@@ -240,7 +264,8 @@ main.conteiner {
             #button_add_lecture,
             #button_add_reason {
                 width: 30%;
-                background: #c9dcff;
+                background-color: #686868;
+                color: #fff;
                 margin: 0 10%;
             }
             &#add_lecture {
@@ -263,17 +288,30 @@ main.conteiner {
         &#reason_list {
             margin-top: 11vh;
         }
+        &.admin_list {
+            // background-color: rgba($color: #000000, $alpha: 0.15);
+            border-radius: 20px 20px 0 0;
+        }
         .list_item {
             display: block;
             margin: 10px 2%;
             text-align: center;
             border: 2px solid;
+            border-radius: 10px;
             font-size: 170%;
             color: #000;
             text-decoration: none;
             z-index: 1;
             &.student_name {
-                background-color: #f7aaaa;
+                background-color: rgba(0, 117, 0, 0.418);
+                width: 28%;
+                cursor: pointer;
+                &.checked {
+                    background-color: #f7aaaa;
+                    &:hover {
+                        background-color: #ff0000;
+                    }
+                }
             }
             &:first {
                 margin-right: 0;
@@ -281,22 +319,38 @@ main.conteiner {
             &:hover {
                 background-color: #dadada;
             }
-            &.admin_list {
+            &.admin_list_item {
+                background-color: rgba(0, 0, 0, 0.15);
                 width: 70%;
+                border-radius: 10px;
+                &:hover {
+                    color: black;
+                }
+                .add_button {
+                    background-color: #686868;
+                    color: #fff;
+                    padding: 5px;
+                    margin: 0 1% 2%;
+                    border-radius: 10px;
+                }
                 .list {
                     max-height: 30vh;
                     overflow: auto;
                     font-size: 80%;
+
                     table {
                         width: 90%;
                         border-collapse: collapse;
                         margin-bottom: 1vh;
+                        border-radius: 10px;
                         td {
-                            border: 1px solid;
-                            .delete_admin{
-                                border:2px solid;
-                                margin: 2px;
-                                display: inline-block;
+                            border: 1px solid #000;
+                            width: 90%;
+                            .delete_admin {
+                                background-color: #686868;
+                                color: #fff;
+                                padding: 3px;
+                                border-radius: 10px;
                             }
                         }
                     }
@@ -338,22 +392,12 @@ main.conteiner {
             }
         }
         &#name_list {
-            height: 70vh;
             justify-content: flex-start;
             flex-wrap: wrap;
             flex-direction: column;
             overflow: auto;
         }
-        .student_name {
-            width: 28%;
-            cursor: pointer;
-            &.checked {
-                background: #dadada;
-                &:hover {
-                    background-color: #ffcccc;
-                }
-            }
-        }
+
         .discipline_name {
             width: 28%;
         }
@@ -375,6 +419,7 @@ main.conteiner {
                     color: #000;
                     padding: 2% 0;
                     border-top: 1px solid #000;
+                    border-radius: 0 0 10px 10px;
                     &:hover {
                         background-color: #fff;
                     }
@@ -388,7 +433,8 @@ main.conteiner {
     .request_mounth {
         margin-top: 11vh;
         table {
-            width: 100%;
+            width: 95%;
+            margin: 0 auto 4vh;
             border-collapse: collapse;
             height: 100%;
             td,
@@ -466,6 +512,7 @@ main.conteiner {
     }
     form {
         position: fixed;
+        border-radius: 20px;
         left: 40%;
         width: 20%;
         padding: 1%;
@@ -557,7 +604,7 @@ main.conteiner {
                 }
             }
         }
-        .error{
+        .error {
             text-align: center;
             color: red;
             width: 100%;
@@ -634,9 +681,13 @@ main.conteiner {
     }
 }
 .add_group {
-    background-color: #515151;
+    background-color: rgba($color: #000000, $alpha: 0.15);
     transition: top 0.7s, opacity 1s;
+    margin: 0 auto 3% auto;
+    border-radius: 20px;
     display: flex;
+    color: #000;
+    width: 90%;
     flex-wrap: wrap;
     .data {
         width: 50%;
@@ -655,7 +706,7 @@ main.conteiner {
             }
         }
     }
-    .error{
+    .error {
         text-align: center;
         color: red;
         width: 100%;
@@ -713,6 +764,7 @@ main.conteiner {
             .select_item {
                 width: 100%;
                 text-align: center;
+                background-color: #dadada;
                 border-bottom: 1px solid #a0a0a0;
                 padding-top: 2px;
                 display: none;
@@ -720,14 +772,14 @@ main.conteiner {
                     display: block;
                 }
                 &.selected {
-                    background-color: #dadada;
+                    background-color: #777676;
                 }
                 &:last-child {
                     border: none;
                 }
                 &:hover {
-                    background: #dadada;
-                    color: #000;
+                    background: #1d1d1d;
+                    color: rgb(255, 255, 255);
                 }
                 span {
                     display: block;
@@ -739,7 +791,6 @@ main.conteiner {
     h2,
     h4 {
         text-align: center;
-        color: #fff;
     }
     h2 {
         margin: 2vh 0;
@@ -771,6 +822,8 @@ main.conteiner {
     input[type="submit"] {
         margin: 2.5vh auto;
         height: 5vh;
-        width: 60%;
+        width: 30%;
+        background: #686868;
+        color: #fff;
     }
 }

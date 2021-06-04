@@ -1,3 +1,4 @@
+
 var state = {
     title: "Панель администратора",
     url: "./admin"

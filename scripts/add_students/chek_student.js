@@ -1,3 +1,8 @@
+window.onload = ()=>{
+    height = $('.student_name').outerHeight(true)+1
+    console.log(height);
+    $('#name_list').css({height:(countStudents*height)/2.9})
+}
 function checkLecture() {
     date = $('#date_lecture').val()
     pair_number = $('#pair_number').val()
@@ -21,10 +26,10 @@ function checkLecture() {
 function check(checkBlock) {
     studentId = checkBlock.data('value');
     if (!checkBlock.hasClass('checked')) {
-        checkBlock.removeClass('checked');
+        checkBlock.addClass('checked');
         checkedId.push(studentId)
     } else {
-        checkBlock.addClass('checked');
+        checkBlock.removeClass('checked');
         checkedId.splice(checkedId.indexOf(studentId), 1)
     }
     console.log(studentId);

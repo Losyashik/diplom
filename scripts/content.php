@@ -48,7 +48,7 @@ switch ($page) {
                     <div class='select_block'>
                         <input type='hidden' id = 'course' value = '0'>
                         <div class='select' data-name='course'><span>Все курсы</span></div>
-                        <div class='select_list hidden'>
+                        <div class='select_list'>
                             <div class='select_item selected' data-value='0'><span>Все курсы</span></div>
                             ";
         $result = $link->query('SELECT * FROM course');
@@ -97,7 +97,7 @@ switch ($page) {
                     <div class='select_block'>
                         <input type='hidden' id = 'course' value = '0'>
                         <div class='select' data-name='course'><span>Все курсы</span></div>
-                        <div class='select_list hidden'>
+                        <div class='select_list'>
                             <div class='select_item selected' data-value='0'><span>Все курсы</span></div>
                             ";
                             $result = $link->query('SELECT * FROM course');
@@ -126,116 +126,115 @@ switch ($page) {
     
     case "./admin":
         echo "
-            <div class='list'>
-                <div class='list_item admin_list'>
+            <div class='list admin_list'>
+                <div class='list_item admin_list_item'>
                     Специальности
                     <button class='open_modal_window add_button' data-modal-id='add_specialty'>Добавить</button>
                     <div class='list'>
                     ";
                     $result = $link->query("SELECT * FROM specialty");
                     for($data=[];$row = $result->fetch_assoc();$data[]=$row);
-                    $result='';
+                    $result='<table>';
                     foreach($data as $elem){
                         $result.="
-                        <table>
                             <tr>
                                 <td>".$elem['name']."</td>
-                                <td><span class='delete_admin' data-name-list = 'delete_specialty' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><button class='delete_admin' data-name-list = 'delete_specialty' data-delete-id='".$elem['id']."'>Удалить</button></td>
                             </tr>
-                        </table>
+                        
                         ";
                     }
-                    echo $result;
+                    echo $result."</table>";
                     echo "
                     </div>
                 </div>
-                <div class='list_item admin_list'>
+                <div class='list_item admin_list_item'>
                     Преподаватели
                     <button class='open_modal_window add_button' data-modal-id='add_teacher'>Добавить</button>
                     <div class='list'>
                     ";
                     $result = $link->query("SELECT * FROM teacher");
                     for($data=[];$row = $result->fetch_assoc();$data[]=$row);
-                    $result='';
+                    $result='<table>';
                     foreach($data as $elem){
                         $result.="
-                        <table>
+                        
                             <tr>
                                 <td>".$elem['surname']." ".$elem['name']." ".$elem['patronymic']."</td>
-                                <td><span class='delete_admin' data-name-list = 'delete_teacher' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><button class='delete_admin' data-name-list = 'delete_teacher' data-delete-id='".$elem['id']."'>Удалить</button></td>
                             </tr>
-                        </table>
+                        
                         ";
                     }
                     echo $result;
-                    echo "
+                    echo "</table>
                     </div>
                 </div>
-                <div class='list_item admin_list'>
+                <div class='list_item admin_list_item'>
                     Дисциплины
                     <button class='open_modal_window add_button' data-modal-id='add_discipline'>Добавить</button>
                     <div class='list'>
                     ";
                     $result = $link->query("SELECT * FROM discipline");
                     for($data=[];$row = $result->fetch_assoc();$data[]=$row);
-                    $result='';
+                    $result='<table>';
                     foreach($data as $elem){
                         $result.="
-                        <table>
+                        
                             <tr>
                                 <td>".$elem['name']."</td>
-                                <td><span class='delete_admin' data-name-list = 'delete_discipline' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><button class='delete_admin' data-name-list = 'delete_discipline' data-delete-id='".$elem['id']."'>Удалить</button></td>
                             </tr>
-                        </table>
+                        
                         ";
                     }
                     echo $result;
-                    echo "
+                    echo "</table>
                     </div>
                 </div>
-                <div class='list_item admin_list'>
+                <div class='list_item admin_list_item'>
                     Связь дисциплина-группа-преподаватель
                     <button class='open_modal_window add_button' data-modal-id='add_gdp'>Добавить</button>
                     <div class='list'>
                     ";
                     $result = $link->query("SELECT * FROM gdp");
                     for($data=[];$row = $result->fetch_assoc();$data[]=$row);
-                    $result='';
+                    $result='<table>';
                     foreach($data as $elem){
                         $result.="
-                        <table>
+                        
                             <tr>
                                 <td>".$link->query("SELECT name FROM discipline WHERE id =".$elem['discipline_id'])->fetch_assoc()['name']."</td>
                                 <td>".$link->query("SELECT surname FROM teacher WHERE id =".$elem['teacher_id'])->fetch_assoc()['surname']."</td>
                                 <td>".$link->query("SELECT name FROM groups WHERE id =".$elem['group_id'])->fetch_assoc()['name']."</td>
-                                <td><span class='delete_admin' data-name-list = 'delete_gdp' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><button class='delete_admin' data-name-list = 'delete_gdp' data-delete-id='".$elem['id']."'>Удалить</button></td>
                             </tr>
-                        </table>
+                        
                         ";
                     }
                     echo $result;
-                    echo "
+                    echo "</table>
                     </div>
                 </div>
-                <div class='list_item admin_list'>
+                <div class='list_item admin_list_item'>
                     Группы
                     <div class='list'>
                     ";
                     $result = $link->query("SELECT * FROM groups");
                     for($data=[];$row = $result->fetch_assoc();$data[]=$row);
-                    $result='';
+                    $result='<table>';
                     foreach($data as $elem){
                         $result.="
-                        <table>
+                        
                             <tr>
                                 <td>".$elem['name']."</td>
-                                <td><span class='delete_admin' data-name-list = 'delete_group' data-delete-id='".$elem['id']."'>Удалить</span></td>
+                                <td><button class='delete_admin' data-name-list = 'delete_group' data-delete-id='".$elem['id']."'>Удалить</button></td>
                             </tr>
-                        </table>
+                        
                         ";
                     }
                     echo $result;
-                    echo "
+                    echo "</table>
                     </div>
                 </div>
             </div>
@@ -403,11 +402,11 @@ switch ($page) {
                     </div>
                     <div class='sort_interface' id='add_lecture'><button id='button_add_lecture'>Сохранить</button></div>
                 </nav>
-                <div class='list' id='name_list'>
                 ";
         $result = $link->query("SELECT * FROM students WHERE group_id = (SELECT id FROM groups WHERE name = '$group_name')");
+        $count = $result->num_rows;
         for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
-        $result = '';
+        $result = "<div class='list' id='name_list'>";
         foreach ($data as  $elem) {
             $result .= "<div class='list_item student_name' data-value='" . $elem['id'] . "'>" . $elem['surname'] . ' ' . $elem['name'] . "</div>";
         }
@@ -418,7 +417,9 @@ switch ($page) {
                 var disciplineId = " . $discipline_id . ";
                 var lectureId = 0;
                 var gdp = " . $gdp . ";
+                var countStudents = " . $count. ";
                 </script>
+                <script src='scripts/add_students/chek_student.js'></script>
                 ";
         break;
 //вывод страницы отчета за месяц по предмету

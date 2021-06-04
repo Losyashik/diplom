@@ -1,9 +1,4 @@
-list = null;
-
 function openSelect(list) {
-    if (list === null) {
-        return false;
-    }
     if (!list.hasClass('activ')) {
         $(list[0]).addClass('activ');
         $(list[0].children).each(function(i, e) {
@@ -16,7 +11,17 @@ function openSelect(list) {
         $(list[0]).removeClass('activ');
     }
 }
-
+$(document).mouseup(function(e) {
+    var container = $(".select_list");
+    if (container.has(e.target).length === 0) {
+        if ($('.select_block').has(e.target).length === 0) {
+            container.each((i,e)=>{
+                if($(e).hasClass('activ'))
+                    openSelect($(e))
+            })
+        }
+    }
+});
 $(document).on('click', '.select', event => {
     list = $(event.currentTarget).next(".select_list");
     openSelect(list);
@@ -37,10 +42,3 @@ $(document).on('click', '.select_item', event => {
     $('#' + id).val(item.data('value'));
     $(select[0].children[0]).html($(event.currentTarget.children).html());
 })
-$(document).mouseup(function(e) {
-    var container = $(".select_list");
-    if (container.has(e.target).length === 0) {
-        openSelect(list)
-        list = null;
-    }
-});
