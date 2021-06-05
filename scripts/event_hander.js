@@ -14,13 +14,13 @@ function reAnswer(state, title) {
 }
 window.onload = function () {
 
-    function handlerAnchors() {
+    function handlerAnchors(event) {
         $('.loader').show();
         $(".navigation a").removeClass('selected');
         $(this).addClass('selected');
         var state = {
-            title: this.getAttribute("title"),
-            url: this.getAttribute("href", 2)
+            title: event.currentTarget.getAttribute("title"),
+            url: event.currentTarget.getAttribute("href", 2)
         }
         console.log(state.url)
         history.pushState(state, state.title, state.url);//запись в историю браузера перехода
@@ -30,8 +30,8 @@ window.onload = function () {
         return false;
     }
 
-    $(document).on('click', 'a', function () {
-        handlerAnchors();
+    $(document).on('click', 'a', function (event) {
+        handlerAnchors(event);
     })
     //Изменение стиля меню при переходе через стрелки браузера и вызов функции reAnswer
     window.onpopstate = function () {

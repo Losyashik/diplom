@@ -1,5 +1,4 @@
 $(document).on('click', '.report_for_discipline', event => {
-    addDataRequest(event);
 
     conteinerPosition = $('.conteiner').offset()
     conteinerWidth = $('.conteiner').width()
