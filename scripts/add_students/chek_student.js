@@ -1,5 +1,5 @@
 window.onload = ()=>{
-    height = $('.student_name').outerHeight(true)+1
+    height = $('.student_name').outerHeight(true)+5;
     console.log(height);
     $('#name_list').css({height:(countStudents*height)/2.9})
 }

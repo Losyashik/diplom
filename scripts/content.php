@@ -613,4 +613,5 @@ switch ($page) {
 //Eroor 404
     default:
         echo "Error 404";
+        echoArr($discipline);
 }
