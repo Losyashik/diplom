@@ -2,12 +2,6 @@
 //$group = $_POST['group'];
 $student_id = $_POST['sId'];
 $link = mysqli_connect('', 'root', '', 'isup');
-function echoArr($arr)
-{
-    echo "<pre>";
-    print_r($arr);
-    echo "</pre>";
-}
 
 $result = $link->query("SELECT * FROM reason WHERE id in (SELECT reason_id FROM result WHERE student_id = $student_id)") or die ($link->error);
 if($result->num_rows==0){

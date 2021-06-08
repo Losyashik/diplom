@@ -7,10 +7,18 @@ if(isset($_POST['add'])){
     $description = $_POST['description'];
     $studId = $_POST['studId'];
 
-
-    $link->query("INSERT INTO `reason`(`date_start`, `date_end`, `reason`) VALUES ('$start','$end','$description')");
-    $reason_id = $link->insert_id;
-    $link->query("UPDATE `result` SET `reason_id`=$reason_id WHERE lecture_id IN (SELECT id FROM lecture WHERE `date` >= '$start' AND `date` <= '$end') AND student_id=$studId");
+    $result = $link->query("SELECT reason_id FROM result WHERE student_id = $studId");
+    if($result->num_rows>0){
+        $link->query("INSERT INTO `reason`(`date_start`, `date_end`, `reason`) VALUES ('$start','$end','$description')");
+        echo($link->error);
+        $reason_id = $link->insert_id;
+        $link->query("UPDATE `result` SET `reason_id`=$reason_id WHERE lecture_id IN (SELECT id FROM lecture WHERE `date` >= '$start' AND `date` <= '$end') AND student_id=$studId");
+        echo("Добавлено");
+    }
+    else{
+        echo('В выбранный период данный студент либо присутствовал на парах, либо преподавательеще не добавил пропуски студента');
+    }
+    
 }
 if(isset($_POST['delete'])){
     $studId = $_POST['studId'];

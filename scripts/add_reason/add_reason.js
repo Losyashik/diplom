@@ -2,6 +2,7 @@ url_reason = 'scripts/add_reason/add_reason.php'
 $(document).on('click', '#add_reason_button', event => {
     form = $(event.target).parent()
     add_data = {add:true}
+    let bool = true;
     $(form).children('input,textarea').each(function (i, e) {
         val = $(e).val()
         nameInp = e.name
@@ -10,6 +11,9 @@ $(document).on('click', '#add_reason_button', event => {
                 $(e).next().css({ border: '2px solid #f00' })
             else
                 $(e).css({ border: '2px solid #f00' })
+            if(bool){
+                bool=false;
+            }
         }
         else {
             if (nameInp == "studId")
@@ -20,20 +24,21 @@ $(document).on('click', '#add_reason_button', event => {
                 add_data[nameInp] = val;
         }
     })
-    if (Object.keys(add_data).length < 4) {
-        return false;
-    }
-    else {
+    if (bool) {
         $.ajax({
             url: url_reason,
             type: 'post',
             data: add_data,
             success: function (text) {
                 $(form).trigger('reset')
-                alert('Добавлено');
+                alert(text);
                 sortContent(data,url)
             }
         })
+        
+    }
+    else {
+        return false;
     }
 })
 $(document).on('click','.delete_reason', event=>{

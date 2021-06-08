@@ -2,12 +2,6 @@
 $date = $_POST['date'];
 $group = $_POST['group'];
 $link = mysqli_connect('', 'root', '', 'isup');
-function echoArr($arr)
-{
-    echo "<pre>";
-    print_r($arr);
-    echo "</pre>";
-}
 $result = $link->query("SELECT * FROM `lecture` WHERE date='$date' AND gdp_id in (SELECT id FROM gdp WHERE group_id = (SELECT id FROM groups WHERE name = '$group'))");
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 $result = '

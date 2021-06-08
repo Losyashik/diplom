@@ -1,11 +1,5 @@
 
 <?php
-function echoArr($arr)
-{
-    echo "<pre>";
-    print_r($arr);
-    echo "</pre>";
-}
 $link = mysqli_connect('', 'root', '', 'isup');
 if (isset($_POST['gdp'])) {
     $gdp = $_POST['gdp'];
