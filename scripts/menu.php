@@ -5,7 +5,7 @@ if (isset($_SESSION['user']))
         $user = $_SESSION['user'];
     } else {
         unset($_SESSION['user']);
-        header('Location:/');
+        header('Location:index.php');
     }
 else {
     openLoginWindow();

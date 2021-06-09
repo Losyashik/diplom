@@ -11,7 +11,7 @@ if (isset($_POST['user'])) {
             $user = $_SESSION['user'];
         } else {
             unset($_SESSION['user']);
-            header('Location:/');
+            header('Location:index.php');
         }
     else {
         openLoginWindow();
@@ -612,6 +612,5 @@ switch ($page) {
     break;
 //Eroor 404
     default:
-        echo "Error 404";
-        echoArr($discipline);
+        echo "<h2 align='center' style='font-size:30pt'>Error 404</h2>";
 }

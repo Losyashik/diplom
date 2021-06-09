@@ -14,7 +14,7 @@ if(isset($_POST['login'])){
                 "role" => $data['role_id'],
                 "last_time" => time()
             ];
-            header('Location:/');
+            header('Location:index.php');
         }
     }
     
