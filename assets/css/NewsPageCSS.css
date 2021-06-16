@@ -1,0 +1,143 @@
+.News-sidebar_title {
+    text-decoration: none;
+}
+
+.News_line {
+    opacity: 0.2;
+    margin-top: 10px;
+}
+.left_block {
+    background-color: #DCDCDC;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    border-radius: 5px;
+    opacity: 0.8;
+    
+}
+
+.dota-text {
+    float: left;
+    margin-left: 300px;
+    font-family: trajan pro bold;
+}
+
+.title-text {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin-left: 300px;
+    width: 52%;
+    font-size: 25px;
+    margin-top: 15px;
+    font-family: trajan pro bold;
+}
+
+.date_time {
+    float: left;
+    margin-left: 300px;
+    width: 42%;
+    margin-top: 30px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.article_main {
+    font-family: trajan pro bold;
+    float: left;
+    margin-left: 300px;
+    width: 52%;
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+.image_1_article {
+    float: left;
+    width: 52%;
+    height: 350px;
+    background-size: 100%;
+    padding: 30px 0;
+    margin-left: 300px;
+}
+.image_1_article img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+.news_content {
+    width: 30%;
+    font-family: trajan pro bold;
+    font-size: 16px;
+    height: 0;
+}
+
+.left_block_title {
+    padding: 15px;
+    color: black;
+    font-family: trajan pro bold;
+    max-width: 100%;
+}
+
+.left_block_article {
+    padding: 15px;
+    color: black;
+    width: 100%;
+}
+
+.button_left_block {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 10px;
+  position: relative;
+  color: white;
+  border: 1px solid rgba(255,255,255,.4);
+  background: none;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.button_left_block:before,
+.button_left_block:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  box-sizing: border-box;
+}
+.button_left_block:before {
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+  transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
+}
+.button_left_block:after {
+  top: 0;
+  right: 0;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  transition: 0s ease opacity .4s, .2s ease width , .2s ease height .2s;
+}
+.button_left_block:hover:before,
+.button_left_block:hover:after{
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+.button_left_block:hover:before {transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;}
+.button_left_block:hover:after {transition: 0s ease opacity .4s, .2s ease height .4s , .2s ease width .6s;}
+.button_left_block:hover {background: rgba(255,255,255,.2);}
+.article_main p {
+    margin-bottom: 20px;
+}
+.article_main p:last-child{
+    margin-bottom: 0;
+}
+.container{
+    min-height: 100vh;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+}
